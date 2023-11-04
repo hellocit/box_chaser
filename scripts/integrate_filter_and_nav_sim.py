@@ -28,6 +28,7 @@ class D1_node:
         self.camera_send_control_commands_flag = False
         self.back_process_flag = True
         self.camera_send_control_commands_is_finished_flag = True
+        self.detected_full_flag = False
 
         self.vel = Twist()
         self.str = String()
@@ -58,9 +59,26 @@ class D1_node:
 
     def string_callback(self, data):
         self.labels = [bbox.Class for bbox in data.bounding_boxes]
-        # rospy.loginfo(self.labels)
+        if not self.labels:
+
+            rospy.loginfo("self.labels is empty")
+            self.detected_full_flag = False
+            fsj = ["tag", "green_box", "blue_box", "tag_a", "tag_b", "tag_c"]
+            rospy.loginfo(fsj)
+            print(type(self.labels[0]))
+        else:
+
+        # if self.labels == ["tag", "green_box", "blue_box", "tag_a", "tag_b", "tag_c"]:
+            fsj = ["tag", "green_box", "blue_box", "tag_a", "tag_b", "tag_c"]
+            # rospy.loginfo(fsj)
+            
+            rospy.loginfo("self.labels is full")
+            self.detected_full_flag = True
+
+        rospy.loginfo(self.labels[0])
+        rospy.loginfo("saofjaoof")
         self.detected = bool(self.labels)
-        # rospy.loginfo(self.detected)
+        rospy.loginfo(self.detected)
 
     def label_string(self):
         self.label_string_count += 1
@@ -207,7 +225,7 @@ class D1_node:
         rospy.loginfo(self.detect_box)
         rospy.loginfo(self.go_on_flag)
         rospy.loginfo("aaaaaaaaaaaaaa")
-        if self.go_on_flag and self.detect_box:
+        if self.go_on_flag and self.detect_box and self.detected_full_flag:
         # if self.width > 0:
         # Call lidar_send_control_commands with laser_scan_msg argument
             self.camera_send_control_commands() # Pass the appropriate laser_scan_msg
