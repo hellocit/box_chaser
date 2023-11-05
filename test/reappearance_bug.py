@@ -79,13 +79,10 @@ class D1_node:
         # if (self.flag_list[0] == str_labels) or (self.flag_list[1] == str_labels) or (self.flag_list[2] == str_labels) or (self.flag_list[3] == str_labels) or (self.flag_list[4] == str_labels) or (self.flag_list[5] == str_labels):
         #     rospy.loginfo("OKKKKKKKKKKKKKKKKKKKKK")
 
-
-
         if not self.labels:
             rospy.loginfo("self.labels is empty")
             self.detected_full_flag = False
-            rospy.loginfo(flag_list)
-            print(type(self.labels[0]))
+            rospy.loginfo("OKKKKKKKKKKK")
         #     if self.flag_list[0] == self.labels or self.flag_list[1] == self.labels or self.flag_list[2] in self.labels or self.flag_list[3] == self.labels or self.flag_list[4] == self.labels or self.flag_list[5] == self.labels:
         #         # 上記の条件式で評価を行ったとき，"blue_box"では実行がされたがself.labelsで評価した時はできなかった．
         #         rospy.loginfo("OKKKKKKKKKKKKKKKKKKKKK")
@@ -94,8 +91,6 @@ class D1_node:
         # flag_list = ["tag", "green_box", "blue_box", "tag_a", "tag_b", "tag_c"]
             rospy.loginfo("self.labels is full")
             self.detected_full_flag = True
-
-
 
         # flag_list = ["tag", "green_box", "blue_box", "tag_a", "tag_b", "tag_c"]
         # rospy.loginfo(self.flag_list[0])
@@ -106,7 +101,7 @@ class D1_node:
         # rospy.loginfo(self.flag_list[5])
 
         # rospy.loginfo(self.labels)
-
+        rospy.loginfo(self.detected_full_flag)
         if self.flag_list[0] == self.labels or self.flag_list[1] == self.labels or self.flag_list[2] == self.labels or self.flag_list[3] == self.labels or self.flag_list[4] == self.labels or self.flag_list[5] == self.labels:
             rospy.loginfo("OKKKKKKKKKKKKKKk")
 
